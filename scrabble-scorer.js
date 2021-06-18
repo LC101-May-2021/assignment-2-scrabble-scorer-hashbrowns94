@@ -78,7 +78,7 @@ const scoringAlgorithms = [
   },
 ];
 
-function scorerPrompt(arr, word) {
+function scorerPrompt(arr, word, obj) {
   let score = 0;
   let scoreSelector = input.question(`Which scoring algorithm would you like to use?\n
   0 - ${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description} \n
@@ -90,7 +90,7 @@ Enter 0, 1, or 2: `);
   } else if (Number(scoreSelector) === 1) {
     score = arr[1].scoringFunction(word);
   } else if (Number(scoreSelector) === 2) {
-    score = arr[2].scoringFunction(word);
+    score = arr[2].scoringFunction(word, newPointStructure);
   }
   return console.log(`Score for ${word}: ${score}`);
 }
@@ -126,7 +126,7 @@ let newPointStructure = transform(oldPointStructure);
 
 function runProgram() {
    let word = initialPrompt();
-  scorerPrompt(scoringAlgorithms, word);
+  scorerPrompt(scoringAlgorithms, word, newPointStructure);
 }
 
 // Don't write any code below this line //
